@@ -30,7 +30,7 @@ export default function SignupCard() {
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
-            Sign up
+            Register new user
           </Heading>
         </Stack>
         <Box
@@ -74,22 +74,35 @@ export default function SignupCard() {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-            <Stack spacing={10} pt={2}>
+            <HStack pt={2} direction="row" justify="space-around">
+              <Link href="/">
+                <Button
+                  bg={"gray.200"}
+                  color={"black"}
+                  _hover={{
+                    bg: "gray.300",
+                  }}
+                >
+                  Go back
+                </Button>
+              </Link>
               <Button
                 loadingText="Submitting"
-                size="lg"
                 bg={"blue.400"}
                 color={"white"}
                 _hover={{
                   bg: "blue.500",
                 }}
               >
-                Sign up
+                Register
               </Button>
-            </Stack>
+            </HStack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user?{" "}
+                <Link color={"blue.400"} href="/login">
+                  Login
+                </Link>
               </Text>
             </Stack>
           </Stack>

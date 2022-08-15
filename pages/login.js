@@ -12,6 +12,7 @@ import {
   Center,
   Text,
   useColorModeValue,
+  HStack,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 
@@ -49,22 +50,41 @@ export default function Login() {
                 justify={"space-between"}
               >
                 <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.400"}>Forgot password?</Link>
               </Stack>
               <Button w={"full"} variant={"outline"} leftIcon={<FcGoogle />}>
                 <Center>
                   <Text>Sign in with Google</Text>
                 </Center>
               </Button>
-              <Button
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
-              >
-                Sign in
-              </Button>
+
+              <HStack direction="row" justify="space-around">
+                <Link href="/">
+                  <Button
+                    bg={"gray.200"}
+                    color={"black"}
+                    _hover={{
+                      bg: "gray.300",
+                    }}
+                  >
+                    Go back
+                  </Button>
+                </Link>
+                <Button
+                  bg={"blue.400"}
+                  color={"white"}
+                  _hover={{
+                    bg: "blue.500",
+                  }}
+                >
+                  Sign in
+                </Button>
+              </HStack>
+              <Text align={"center"}>
+                Not a user yet?{" "}
+                <Link color={"blue.400"} href="/register">
+                  Register
+                </Link>
+              </Text>
             </Stack>
           </Stack>
         </Box>
