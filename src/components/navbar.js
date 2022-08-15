@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   Flex,
   Text,
   IconButton,
@@ -21,6 +22,8 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import Image from "next/image";
+import logo from "../../public/logo.png";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -53,14 +56,7 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-          >
-            Logo
-          </Text>
-
+          <Image src={logo} alt="Task logo" width={40} height={30} />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -72,28 +68,26 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
-          >
-            Sign In
-          </Button>
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"#"}
-            _hover={{
-              bg: "pink.300",
-            }}
-          >
-            Sign Up
-          </Button>
+          <Link href="/login">
+            <Button fontSize={"sm"} fontWeight={400} href={"#"}>
+              Sign In
+            </Button>
+          </Link>
+          <Link href="/register">
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"pink.400"}
+              href={"#"}
+              _hover={{
+                bg: "pink.300",
+              }}
+            >
+              Sign Up
+            </Button>
+          </Link>
         </Stack>
       </Flex>
 
@@ -113,40 +107,38 @@ const DesktopNav = () => {
     <Stack direction={"row"} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
-            </PopoverTrigger>
+          <Center>
+            <Link
+              p={2}
+              href={navItem.href}
+              fontSize={"sm"}
+              fontWeight={500}
+              color={linkColor}
+              _hover={{
+                textDecoration: "none",
+                color: linkHoverColor,
+              }}
+            >
+              {navItem.label}
+            </Link>
+          </Center>
 
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
+          {navItem.children && (
+            <PopoverContent
+              border={0}
+              boxShadow={"xl"}
+              bg={popoverContentBgColor}
+              p={4}
+              rounded={"xl"}
+              minW={"sm"}
+            >
+              <Stack>
+                {navItem.children.map((child) => (
+                  <DesktopSubNav key={child.label} {...child} />
+                ))}
+              </Stack>
+            </PopoverContent>
+          )}
         </Box>
       ))}
     </Stack>
@@ -260,10 +252,10 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: "Home",
-    href: "#",
+    href: "/",
   },
   {
     label: "To-do",
-    href: "#",
+    href: "/tasks",
   },
 ];
