@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import Navbar from "../src/components/navbar";
 
-export default function Tasks() {
+export default function Tasks({ tasks }) {
   return (
     <>
       <Navbar />
@@ -62,4 +62,14 @@ export default function Tasks() {
       </Container>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const tasks = ["una tarea"];
+
+  return {
+    props: {
+      tasks,
+    },
+  };
 }

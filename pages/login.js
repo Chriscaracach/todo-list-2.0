@@ -15,6 +15,7 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
+import { authWithPopup } from "../firebase/auth/auth_with_popup";
 
 export default function Login() {
   return (
@@ -51,7 +52,12 @@ export default function Login() {
               >
                 <Checkbox>Remember me</Checkbox>
               </Stack>
-              <Button w={"full"} variant={"outline"} leftIcon={<FcGoogle />}>
+              <Button
+                w={"full"}
+                variant={"outline"}
+                leftIcon={<FcGoogle />}
+                onClick={authWithPopup}
+              >
                 <Center>
                   <Text>Sign in with Google</Text>
                 </Center>
