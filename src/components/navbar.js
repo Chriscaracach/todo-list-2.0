@@ -68,12 +68,30 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-          <Link href="/login">
-            <Button fontSize={"sm"} fontWeight={400} href={"#"}>
-              Sign In
-            </Button>
-          </Link>
-          <Link href="/register">
+          {true ? (
+            <>
+              <Link href="/login">
+                <Button fontSize={"sm"} fontWeight={400} href={"#"}>
+                  Login
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button
+                  display={{ base: "none", md: "inline-flex" }}
+                  fontSize={"sm"}
+                  fontWeight={600}
+                  color={"white"}
+                  bg={"green.400"}
+                  href={"#"}
+                  _hover={{
+                    bg: "green.300",
+                  }}
+                >
+                  Create user
+                </Button>
+              </Link>
+            </>
+          ) : (
             <Button
               display={{ base: "none", md: "inline-flex" }}
               fontSize={"sm"}
@@ -85,9 +103,9 @@ export default function Navbar() {
                 bg: "pink.300",
               }}
             >
-              Sign Up
+              Logout
             </Button>
-          </Link>
+          )}
         </Stack>
       </Flex>
 

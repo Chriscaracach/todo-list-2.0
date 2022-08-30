@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { createUser } from "../firebase/auth/create_user_with_email";
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
@@ -93,6 +94,7 @@ export default function SignupCard() {
                 _hover={{
                   bg: "blue.500",
                 }}
+                onClick={() => createUser("c@c.com", "password")} //!HACER
               >
                 Register
               </Button>
