@@ -1,5 +1,13 @@
 import Head from "next/head";
-import { Box, Heading, Container, Text, Button, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Container,
+  Text,
+  Button,
+  Stack,
+  Link,
+} from "@chakra-ui/react";
 
 export default function Hero() {
   return (
@@ -32,16 +40,18 @@ export default function Hero() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Button
-              colorScheme={"green"}
-              bg={"green.400"}
-              px={6}
-              _hover={{
-                bg: "green.500",
-              }}
-            >
-              Get Started
-            </Button>
+            <Link href="/login">
+              <Button
+                colorScheme={"green"}
+                bg={"green.400"}
+                px={6}
+                _hover={{
+                  bg: "green.500",
+                }}
+              >
+                Get Started
+              </Button>
+            </Link>
           </Stack>
         </Stack>
       </Container>
