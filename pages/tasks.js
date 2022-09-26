@@ -2,7 +2,6 @@ import {
   Container,
   TableContainer,
   Table,
-  TableCaption,
   Thead,
   Tr,
   Th,
@@ -13,7 +12,20 @@ import {
 } from "@chakra-ui/react";
 import Navbar from "../src/components/navbar";
 
+import { useEffect } from "react";
+import Router from "next/router";
+import { useAuth } from "../src/contexts/authContext";
+
 export default function Tasks({ tasks }) {
+  const user = useAuth(); //!ESTO NO ANDA, Tira unndefined
+  console.log(user);
+
+  useEffect(() => {
+    if (!user) {
+      Router.push("/login");
+    }
+  }, [user]);
+
   return (
     <>
       <Navbar />

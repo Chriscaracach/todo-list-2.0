@@ -1,6 +1,8 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
+//TODO Manejar errores (console.log o state)
+
 export const createUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {

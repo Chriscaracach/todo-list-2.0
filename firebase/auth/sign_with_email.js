@@ -1,6 +1,8 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
+//TODO Manejar errores (console.log o state)
+
 export const signWithEmail = (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
