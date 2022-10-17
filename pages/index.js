@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "../src/components/navbar";
 import Hero from "../src/components/hero";
+import ErrorVisualizer from "../src/components/errorVisualizer";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
 
       <Navbar />
       <Hero />
+      <ErrorVisualizer type="error" message="un error" />
     </div>
   );
 }
