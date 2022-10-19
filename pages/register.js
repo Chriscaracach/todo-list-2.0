@@ -13,12 +13,14 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Divider,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { createUser } from "../firebase/auth/create_user_with_email";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import ErrorVisualizer from "../src/components/errorVisualizer";
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
@@ -70,7 +72,7 @@ export default function SignupCard() {
                 <form onSubmit={handleSubmit}>
                   <HStack>
                     <Box>
-                      <FormControl isRequired>
+                      <FormControl>
                         <FormLabel>First Name</FormLabel>
                         <Field
                           as={Input}
@@ -78,11 +80,16 @@ export default function SignupCard() {
                           type="text"
                           variant="filled"
                         />
+                        <ErrorMessage name="firstName">
+                          {(message) => (
+                            <ErrorVisualizer type="error" message={message} />
+                          )}
+                        </ErrorMessage>
                       </FormControl>
                     </Box>
 
                     <Box>
-                      <FormControl isRequired>
+                      <FormControl>
                         <FormLabel>Last Name</FormLabel>
                         <Field
                           as={Input}
@@ -91,10 +98,16 @@ export default function SignupCard() {
                           variant="filled"
                         />
                       </FormControl>
+                      <ErrorMessage name="lastName">
+                        {(message) => (
+                          <ErrorVisualizer type="error" message={message} />
+                        )}
+                      </ErrorMessage>
                     </Box>
                   </HStack>
 
-                  <FormControl id="email" isRequired>
+                  <Divider my={3} />
+                  <FormControl id="email">
                     <FormLabel>Email address</FormLabel>
                     <Field
                       as={Input}
@@ -102,9 +115,16 @@ export default function SignupCard() {
                       type="email"
                       variant="filled"
                     />
+                    <ErrorMessage name="email">
+                      {(message) => (
+                        <ErrorVisualizer type="error" message={message} />
+                      )}
+                    </ErrorMessage>
                   </FormControl>
 
-                  <FormControl id="password" isRequired>
+                  <Divider my={3} />
+
+                  <FormControl id="password">
                     <FormLabel>Password</FormLabel>
                     <InputGroup>
                       <Field
@@ -125,10 +145,16 @@ export default function SignupCard() {
                         </Button>
                       </InputRightElement>
                     </InputGroup>
+                    <ErrorMessage name="password">
+                      {(message) => (
+                        <ErrorVisualizer type="error" message={message} />
+                      )}
+                    </ErrorMessage>
                   </FormControl>
+                  <Divider my={3} />
 
                   <HStack pt={2} direction="row" justify="space-around">
-                    <Link href="/">
+                    <Link href="/" style={{ textDecoration: "none" }}>
                       <Button
                         bg={"gray.200"}
                         color={"black"}
